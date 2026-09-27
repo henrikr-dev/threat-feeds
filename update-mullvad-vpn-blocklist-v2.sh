@@ -63,3 +63,11 @@ printf 'Wrote %s uniq active IPv4 adresses to %s\n' \
 
 printf 'Wrote %s optimized CIDR prefixes to %s\n' \
   "$(wc -l < "$OPTIMIZED_OUTPUT" | tr -d ' ')" "$OPTIMIZED_OUTPUT"
+
+
+git add $OUTPUT
+git add $OPTIMIZED_OUTPUT
+
+# git commit -m "Files updated $(date +%Y-%m-%d)"
+
+exit $?
