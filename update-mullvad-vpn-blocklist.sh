@@ -68,8 +68,8 @@ printf 'Wrote %s optimized CIDR prefixes to %s\n' \
 git add $OUTPUT
 git add $OPTIMIZED_OUTPUT
 
-# git commit -m "Files updated $(date +%Y-%m-%d)"
-# sleep 3
-# git push
+git commit -m "Files updated $(date +%Y-%m-%d)"
+sleep 3
+git push
 
 exit $?
