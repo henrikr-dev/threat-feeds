@@ -65,8 +65,9 @@ printf 'Wrote %s optimized CIDR prefixes to %s\n' \
   "$(wc -l < "$OPTIMIZED_OUTPUT" | tr -d ' ')" "$OPTIMIZED_OUTPUT"
 
 
-git add $OUTPUT
-git add $OPTIMIZED_OUTPUT
+#git add $OUTPUT
+#git add $OPTIMIZED_OUTPUT
+git add .
 
 git commit -m "Files updated $(date +%Y-%m-%d)"
 sleep 3
