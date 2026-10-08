@@ -1,26 +1,40 @@
 #!/bin/bash
 
-# Sökväg till textfilen för FortiGate
 OUTPUT_FILE="datacamp-blocklist.txt"
-
-# Kontrollera att whois-paketet är installerat
-if ! command -v whois &> /dev/null; then
-    sudo apt-get update && sudo apt-get install -y whois || sudo yum install -y whois
-fi
-
+EARLIER_FILE="datacamp-blocklist-earlier.txt"
 TMP_FILE=$(mktemp)
 
-# Hämta alla IPv4-rader kopplade till AS43350 (DataCamp)
-whois -h whois.radb.net -- "-i origin AS43350" | grep '^route:' | awk '{print $2}' | sort -u > "$TMP_FILE"
+trap 'rm -f "$TMP_FILE"' EXIT
 
-# Felsäkring: Skriv endast över om vi fick ett resultat
+# Get all subnets for AS43350 (DataCamp)
+whois -h whois.radb.net -- "-i origin AS43350" |
+    grep '^route:' |
+    awk '{print $2}' |
+    sort -u > "$TMP_FILE"
+
+# Overwrite the output file only if data was received
 if [ -s "$TMP_FILE" ]; then
+    if [ -f "$OUTPUT_FILE" ]; then
+        cp "$OUTPUT_FILE" "$EARLIER_FILE"
+
+        DIFFERENT_LINES=$(
+            comm -3 \
+                <(sort -u "$EARLIER_FILE") \
+                <(sort -u "$TMP_FILE") |
+            wc -l |
+            tr -d ' '
+        )
+
+        echo "Previous list backed up to $EARLIER_FILE"
+        echo "Different lines: $DIFFERENT_LINES"
+    else
+        echo "No previous list found; creating a new one."
+    fi
+
     mv "$TMP_FILE" "$OUTPUT_FILE"
     chmod 644 "$OUTPUT_FILE"
-    echo "Lyckades! Listan sparad i $OUTPUT_FILE"
+    echo "Success! List saved to $OUTPUT_FILE"
 else
-    echo "Fel: Kunde inte hämta BGP-data för DataCamp."
-    rm -f "$TMP_FILE"
+    echo "Error: Could not retrieve BGP data for DataCamp."
     exit 1
 fi
-
