@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Path to the ip list files
+# Path to the FortiGate blocklist file
 OUTPUT_FILE="aws-iplist.txt"
 EARLIER_FILE="aws-iplist-earlier.txt"
 
@@ -11,8 +11,13 @@ AWS_URL="https://ip-ranges.amazonaws.com/ip-ranges.json"
 TMP_FILE=$(mktemp)
 trap 'rm -f "$TMP_FILE"' EXIT
 
-# Fetch AWS IPv4 prefixes using curl and extract ip_prefix with jq
-curl -s "$AWS_URL" | jq -r '.prefixes[].ip_prefix' | sort -u > "$TMP_FILE"
+# Fetch AWS IPv4 prefixes using curl, extract with jq, and aggregate/collapse networks with Python
+curl -s "$AWS_URL" | jq -r '.prefixes[].ip_prefix' | python3 -c '
+import sys, ipaddress
+nets = [ipaddress.ip_network(line.strip()) for line in sys.stdin if line.strip()]
+for net in ipaddress.collapse_addresses(nets):
+    print(net)
+' > "$TMP_FILE"
 
 # Update the output file only if data was received
 if [ -s "$TMP_FILE" ]; then
