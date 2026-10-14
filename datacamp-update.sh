@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_FILE="datacamp-blocklist.txt"
-EARLIER_FILE="datacamp-blocklist-earlier.txt"
+EARLIER_FILE="ip-lists-history/datacamp-blocklist-earlier.txt"
 TMP_FILE=$(mktemp)
 
 trap 'rm -f "$TMP_FILE"' EXIT

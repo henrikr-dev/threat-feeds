@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_FILE="tzulo-blocklist.txt"
-EARLIER_FILE="tzulo-blocklist-earlier.txt"
+EARLIER_FILE="ip-lists-history/tzulo-blocklist-earlier.txt"
 
 # Create a temporary file
 TMP_FILE=$(mktemp)

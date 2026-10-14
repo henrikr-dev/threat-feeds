@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_FILE="azure-iplist.txt"
-EARLIER_FILE="azure-iplist-earlier.txt"
+EARLIER_FILE="ip-lists-history/azure-iplist-earlier.txt"
 
 # Microsoft's official download page for Azure IP Ranges
 AZURE_PAGE_URL="https://www.microsoft.com/en-us/download/details.aspx?id=56519"

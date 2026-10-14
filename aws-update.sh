@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_FILE="aws-iplist.txt"
-EARLIER_FILE="aws-iplist-earlier.txt"
+EARLIER_FILE="ip-lists-history/aws-iplist-earlier.txt"
 
 # URL to AWS IP ranges
 AWS_URL="https://ip-ranges.amazonaws.com/ip-ranges.json"

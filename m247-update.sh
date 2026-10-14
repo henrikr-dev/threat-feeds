@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_FILE="m247-blocklist.txt"
-EARLIER_FILE="m247-blocklist-earlier.txt"
+EARLIER_FILE="ip-lists-history/m247-blocklist-earlier.txt"
 TMP_FILE=$(mktemp)
 
 trap 'rm -f "$TMP_FILE"' EXIT

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 OUTPUT_FILE="gcp-iplist.txt"
-EARLIER_FILE="gcp-iplist-earlier.txt"
+EARLIER_FILE="ip-lists-history/gcp-iplist-earlier.txt"
 
 # Official URL for Google Cloud IP ranges
 GCP_URL="https://www.gstatic.com/ipranges/cloud.json"
