@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Path to the FortiGate blocklist file
 OUTPUT_FILE="tzulo-blocklist.txt"
 EARLIER_FILE="tzulo-blocklist-earlier.txt"
 
@@ -34,7 +33,6 @@ if [ -s "$TMP_FILE" ]; then
     fi
 
     mv "$TMP_FILE" "$OUTPUT_FILE"
-    chmod 644 "$OUTPUT_FILE"
     echo "Success! List saved to $OUTPUT_FILE"
 else
     echo "Error: Could not fetch BGP data from RADB. The existing file was left unchanged."

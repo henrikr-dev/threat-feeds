@@ -32,7 +32,6 @@ if [ -s "$TMP_FILE" ]; then
     fi
 
     mv "$TMP_FILE" "$OUTPUT_FILE"
-    chmod 644 "$OUTPUT_FILE"
     echo "Success! List saved to $OUTPUT_FILE"
 else
     echo "Error: Could not retrieve BGP data for DataCamp."

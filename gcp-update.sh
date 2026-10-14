@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Path to the ip list
 OUTPUT_FILE="gcp-iplist.txt"
 EARLIER_FILE="gcp-iplist-earlier.txt"
 

@@ -32,7 +32,6 @@ if [ -s "$TMP_FILE" ]; then
     fi
 
     mv "$TMP_FILE" "$OUTPUT_FILE"
-    chmod 644 "$OUTPUT_FILE"
     echo "Success! List saved in $OUTPUT_FILE"
 else
     echo "Error: Could not fetch BGP data for M247."

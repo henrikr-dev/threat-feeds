@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Path to the files
 OUTPUT_FILE="azure-iplist.txt"
 EARLIER_FILE="azure-iplist-earlier.txt"
 
@@ -47,7 +46,6 @@ if [ -s "$TMP_FILE" ]; then
     fi
 
     mv "$TMP_FILE" "$OUTPUT_FILE"
-    chmod 644 "$OUTPUT_FILE"
     echo "Success! List saved to $OUTPUT_FILE"
 else
     echo "Error: Could not fetch IP data from Azure. The existing file was left unchanged."

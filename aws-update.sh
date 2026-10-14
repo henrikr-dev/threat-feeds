@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Path to the FortiGate blocklist file
 OUTPUT_FILE="aws-iplist.txt"
 EARLIER_FILE="aws-iplist-earlier.txt"
 
@@ -39,7 +38,6 @@ if [ -s "$TMP_FILE" ]; then
     fi
 
     mv "$TMP_FILE" "$OUTPUT_FILE"
-    chmod 644 "$OUTPUT_FILE"
     echo "Success! List saved to $OUTPUT_FILE"
 else
     echo "Error: Could not fetch IP data from AWS. The existing file was left unchanged."
