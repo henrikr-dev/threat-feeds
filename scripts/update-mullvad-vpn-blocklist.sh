@@ -5,7 +5,7 @@ API_URL='https://api.mullvad.net/www/relays/all/'
 OUTPUT='../mullvad-ipv4.txt'
 EARLIER_OUTPUT='../ip-lists-history/mullvad-ipv4-earlier.txt'
 OPTIMIZED_OUTPUT='../optimized-mullvad-ipv4.txt'
-EARLIER_OPTIMIZED_OUTPUT='../optimized-mullvad-ipv4-earlier.txt'
+EARLIER_OPTIMIZED_OUTPUT='../ip-list-history/optimized-mullvad-ipv4-earlier.txt'
 
 TEMP_FILE="$(mktemp)"
 TEMP_OPTIMIZED="$(mktemp)"
